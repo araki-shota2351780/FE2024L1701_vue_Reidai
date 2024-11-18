@@ -1,27 +1,34 @@
-<!-- トップページHTML -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>例題</title>
+    <title>アカウント作成</title>
 </head>
 <body>
     <div id="app">
         <h2>アカウント作成</h2>
-        <!-- パスワード入力  v-model使用 -->        
+        <!-- パスワード入力  v-model使用 -->
+        <label for="password">パスワード:</label>
+        <input type="password" id="password" v-model="password" placeholder="パスワード">
         
-        <!-- パスワード確認入力 v-model使用 -->        
+
+        <!-- パスワード確認入力 v-model使用 -->
+        <label for="passwordConfirm">パスワード確認:</label>
+        <input type="password" id="passwordConfirm" v-model="passwordConfirm" placeholder="パスワード確認">
       
         <!-- 登録ボタン　条件付きレンダリング -->
-        　<!-- パスワード一致の場合、登録ボタン -->
+        <!-- 初期状態では使用不可を表示 -->
+        <!-- パスワード一致の場合、登録ボタン -->
+        <button v-if="isPasswordValid">登録</button>
+        <button v-else>使用不可</button>
+        <br>
 
-        　<!-- パスワード不一致の場合、使用不可ボタン　-->
-        
         <!-- メッセージ　条件付きレンダリング -->
-        　<!-- パスワード不一致の場合、メッセージ表示　-->
-        
-      </div>
+        <!-- パスワード不一致の場合、メッセージ表示 -->
+        <p v-if="password && passwordConfirm && !isPasswordValid" style="color: red;">パスワードが一致しません</p>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="./script/script.js"></script>
 </body>
